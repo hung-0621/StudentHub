@@ -1,37 +1,52 @@
-import { asyncDelete } from "../utils/fetch";
+import { asyncDelete, asyncGet } from "../utils/fetch";
 import Navigation_bar from "./Navigation_bar";
-import { useState } from "react";
+import { Student } from "../interface/Student";
+import { resp } from "../interface/resp";
+import { useState, useEffect, useRef } from "react";
 import { api } from "../enum/api";
 
 export default function Delete() {
-    const [data, setData] = useState({
-        userName: ""
-    });
-    const [error, setError] = useState("");
-    const [success, setSuccess] = useState("");
+    const [StudentNumber, setStudentNumber] = useState(0);
+    const cache = useRef<boolean>(false);
+
+    useEffect(() => {
+        /**
+         * 做緩存處理, 避免多次發起請求
+         */
+        if (!cache.current) {
+            cache.current = true;
+            asyncGet(api.findAll).then((res: resp<Array<Student>>) => {
+                if (res.code === 200) {
+                    setStudentNumber(res.body.length);
+                }
+            });
+        }
+    }, []);
+
+
+    const [sid, setSid] = useState<string>("");
+    const [error, setError] = useState<string>("");
+    const [success, setSuccess] = useState<string>("");
 
     function handle_OnChange(e: React.ChangeEvent<HTMLInputElement>) {
-        const { name, value } = e.target;
-        setData({
-            ...data,
-            [name]: value,
-        });
+        setSid(e.target.value);
     }
 
     async function handle_OnSubmit(e: React.FormEvent) {
         e.preventDefault();
-        if (!data.userName) {
+        if (!sid) {
             setError("請輸入座號！");
+            return;
+        } else if (Number(sid) > StudentNumber || Number(sid) <= 0) {
+            setError("座號輸入錯誤！")
             return;
         }
 
         try {
-            const response = await asyncDelete(api.deleteBySid, { sid: data.userName });
-
-            // 假設 API 回傳成功訊息，根據後端邏輯可做調整
-            if (response && response.success) {
+            const response = await asyncDelete(api.deleteBySid, { "sid": sid });
+            if (response.message === "success") {
                 setSuccess("學生刪除成功！");
-                setData({ userName: "" });
+                setSid("");
                 setError("");
             } else {
                 setError("刪除失敗，請重試。");
@@ -46,21 +61,20 @@ export default function Delete() {
     return (
         <>
             <Navigation_bar />
-            <h2>刪除學生</h2>
-            <div className="delete">
+            <form onSubmit={handle_OnSubmit}>
+                <h2>刪除學生</h2>
                 {error && <p style={{ color: "red" }}>{error}</p>}
                 {success && <p style={{ color: "green" }}>{success}</p>}
-                <form onSubmit={handle_OnSubmit}>
-                    <input 
-                        type="text" 
-                        name="userName" 
-                        value={data.userName} 
-                        onChange={handle_OnChange} 
-                        placeholder="座號" 
-                    />
-                    <button type="submit">刪除</button>
-                </form>
-            </div>
+                <input
+                    type="text"
+                    name="sid"
+                    value={sid}
+                    onChange={handle_OnChange}
+                    placeholder="座號"
+                />
+                <button type="submit">刪除</button>
+            </form>
+
         </>
     );
 }

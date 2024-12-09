@@ -49,7 +49,7 @@ export class UserController extends Contorller {
   }
   
   public async deleteBySid(Request: Request, Response: Response) {
-    const resp = await this.service.deleteBySid(Request.query.id as string);
+    const resp = await this.service.deleteBySid(Request.body.sid as string);
     Response.status(resp.code).send(resp);
   }
 

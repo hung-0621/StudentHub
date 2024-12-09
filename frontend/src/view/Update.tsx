@@ -8,8 +8,8 @@ export default function Update() {
         name: "",
         absences: "",
     });
-    const [error, setError] = useState<string | null>(null); // 用於顯示錯誤訊息
-    const [success, setSuccess] = useState<string | null>(null); // 用於顯示成功訊息
+    const [error, setError] = useState<string | null>(null); // 錯誤訊息
+    const [success, setSuccess] = useState<string | null>(null); // 成功訊息
 
     function handle_OnChange(e: React.ChangeEvent<HTMLInputElement>) {
         const { name, value } = e.target;
@@ -34,13 +34,12 @@ export default function Update() {
             const response = await asyncPut(api.updateAbsencesByName, data);
             if (response.code === 200) {
                 setSuccess("學生資料更新成功！");
-                setData({ name: "", absences: "" }); // 重置輸入欄位
+                setData({ name: "", absences: "" }); // 重置
             } else {
-                setError(response.message || "更新失敗，請稍後再試！");
+                setError("更新失敗，請稍後再試！");
             }
         } catch (error) {
             setError("伺服器錯誤，請稍後再試！");
-            alert(`Update error:${error as string}`);
         }
     }
 

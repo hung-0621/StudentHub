@@ -21,7 +21,7 @@ export async function asyncPost(api: string, body: {} | FormData) {
         method: 'POST',
         // credentials: 'include',
         headers:new Headers({
-            'Access-Control-Allow-Origin':"http://localhost:5174",
+            'Access-Control-Allow-Origin':"http://localhost:5173",
             'content-Type':"application/json"
         }),
         body: body instanceof FormData?body:JSON.stringify(body),

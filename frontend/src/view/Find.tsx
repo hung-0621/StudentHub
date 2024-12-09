@@ -4,6 +4,7 @@ import { Student } from "../interface/Student";
 import { resp } from "../interface/resp";
 import { asyncGet } from "../utils/fetch";
 import { api } from "../enum/api";
+import "../style/Find.css";
 
 
 export default function Find() {
@@ -22,7 +23,7 @@ export default function Find() {
       asyncGet(api.findAll).then((res: resp<Array<Student>>) => {
         if (res.code === 200) {
           setStudents(res.body);
-          setFilteredStudents(res.body); // 預設顯示所有學生
+          setFilteredStudents(res.body);
         }
       });
     }
@@ -66,13 +67,15 @@ export default function Find() {
     <>
       <Navigation_bar />
       <div className="find">
-        <h2>查找學生</h2>
-        <input
-          type="text"
-          placeholder="輸入學生姓名"
-          value={searchName}
-          onChange={(e) => setSearchName(e.target.value)} // 更新搜尋條件
-        />
+        <form>
+          <h2>查找學生</h2>
+          <input
+            type="text"
+            placeholder="輸入學生姓名"
+            value={searchName}
+            onChange={(e) => setSearchName(e.target.value)}
+          />
+        </form>
         {container}
       </div>
     </>
