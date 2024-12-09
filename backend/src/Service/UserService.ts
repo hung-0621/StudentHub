@@ -163,6 +163,25 @@ export class UserService extends Service {
     return resp;
   }
 
+  public async deleteBySid(sid: string) {
+    const resp: resp<any> = {
+      code: 200,
+      message: "",
+      body: undefined,
+    };
+
+    try {
+      const res = await studentsModel.deleteOne({ sid: sid });
+      resp.message = "success";
+      resp.body = res;
+    } catch (error) {
+      resp.message = error as string;
+      resp.code = 500;
+    }
+
+    return resp;
+  }
+
   public async updateNameByID(id: string, name: string) {
     const resp: resp<DBResp<Student> | undefined> = {
       code: 200,
@@ -186,31 +205,35 @@ export class UserService extends Service {
       resp.code = 404;
       resp.message = "user not found";
     }
-
     return resp;
   }
 
-  public async get_student_by_sid(sid: number) {
-    const resp: resp<any> = {
+  public async updateAbsencesByName(name: string, absences: number) {
+    const resp: resp<DBResp<Student> | undefined> = {
       code: 200,
       message: "",
       body: undefined,
     };
 
-    const user = await studentsModel.findOne({ sid: sid });
+    const user = await studentsModel.findOne({name:name});
+
     if (user) {
       try {
+        user.absences = absences;
+        await user.save();
         resp.body = user;
-        resp.message = "find by sid success";
+        resp.message = "update success";
       } catch (error) {
         resp.code = 500;
         resp.message = error as string;
       }
     } else {
       resp.code = 404;
-      resp.message = "user not find";
+      resp.message = "user not found";
     }
-    
     return resp;
   }
 }
+
+
+

@@ -17,12 +17,12 @@ export const DB = new MongoDB({
 });
 
 app.use(cors({
-  // "origin": "https://sec.ethci.app",
-  "origin": "*",
-  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-  "preflightContinue": false,
-  "optionsSuccessStatus": 200,
-  "exposedHeaders": ['Content-Disposition']
+  origin: "*",
+  credentials: true,
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  preflightContinue: false,
+  optionsSuccessStatus: 200,
+  exposedHeaders: ['Content-Disposition']
 }))
 
 app.use(express.json({limit:'50mb'}));

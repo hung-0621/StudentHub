@@ -37,8 +37,16 @@ export class UserRoute extends Route {
       this.Contorller.deleteById(req, res);
     });
 
+    this.router.delete(`${this.url}deleteBySid`, (req, res) => {
+      this.Contorller.deleteBySid(req, res);
+    });
+
     this.router.put(`${this.url}updateNameByID`, (req, res) => {
       this.Contorller.updateNameByID(req, res);
+    });
+
+    this.router.put(`${this.url}updateAbsencesByName`, (req, res) => {
+      this.Contorller.updateAbsencesByName(req, res);
     });
   }
 }

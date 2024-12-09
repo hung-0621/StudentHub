@@ -40,7 +40,7 @@ export default function Update() {
             }
         } catch (error) {
             setError("伺服器錯誤，請稍後再試！");
-            console.error("Update error:", error);
+            alert(`Update error:${error as string}`);
         }
     }
 

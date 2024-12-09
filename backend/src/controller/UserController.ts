@@ -4,6 +4,7 @@ import { UserService } from "../Service/UserService";
 import { resp } from "../utils/resp";
 import { DBResp } from "../interfaces/DBResp";
 import { Student } from "../interfaces/Student";
+import { log } from "console";
 require("dotenv").config();
 
 export class UserController extends Contorller {
@@ -46,11 +47,24 @@ export class UserController extends Contorller {
     const resp = await this.service.deleteById(Request.query.id as string);
     Response.status(resp.code).send(resp);
   }
+  
+  public async deleteBySid(Request: Request, Response: Response) {
+    const resp = await this.service.deleteBySid(Request.query.id as string);
+    Response.status(resp.code).send(resp);
+  }
 
   public async updateNameByID(Request: Request, Response: Response) {
     const resp = await this.service.updateNameByID(
       Request.body.id,
       Request.body.name
+    );
+    Response.status(resp.code).send(resp);
+  }
+
+  public async updateAbsencesByName(Request: Request, Response: Response) {
+    const resp = await this.service.updateAbsencesByName(
+      Request.body.name,
+      Request.body.absences
     );
     Response.status(resp.code).send(resp);
   }
