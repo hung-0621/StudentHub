@@ -3,7 +3,7 @@
  * @param api 要呼叫的api
  * @returns json 結果
  */
-export async function asyncGet(api: string):Promise<any>{
+export async function asyncGet(api: string): Promise<any> {
     try {
         const res: Response = await fetch(api)
         try {
@@ -19,9 +19,9 @@ export async function asyncGet(api: string):Promise<any>{
 export async function asyncPost(api: string, body: {} | FormData) {
     const res: Response = await fetch(api, {
         method: 'POST',
-        credentials: 'include',
+        // credentials: 'include',
         headers:new Headers({
-            'Access-Control-Allow-Origin':"http://localhost:5173/",
+            'Access-Control-Allow-Origin':"http://localhost:5174",
             'content-Type':"application/json"
         }),
         body: body instanceof FormData?body:JSON.stringify(body),
@@ -35,14 +35,17 @@ export async function asyncPost(api: string, body: {} | FormData) {
     }
 }
 
+  
+
+
 export async function asyncPatch(api: string, body: {} | FormData) {
     const res: Response = await fetch(api, {
         method: 'PATCH',
-        headers:new Headers({
-            'Access-Control-Allow-Origin':"http://localhost:5173/",
+        headers: new Headers({
+            'Access-Control-Allow-Origin': "http://localhost:5173/",
         }),
-        body: body instanceof FormData?body:JSON.stringify(body),
-        mode:"cors"
+        body: body instanceof FormData ? body : JSON.stringify(body),
+        mode: "cors"
     })
     try {
         let data = res.json()

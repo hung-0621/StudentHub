@@ -41,36 +41,40 @@ export default function Find() {
   }, [searchName, students]);
 
 
-  const container = <div className="container">
-    {filteredStudents.length > 0 ? (
-      filteredStudents.map((student) => (
-        <div className="student" key={student._id}>
-          <p>帳號: {student.userName}</p>
-          <p>座號: {student.sid}</p>
-          <p>姓名: {student.name}</p>
-          <p>院系: {student.department}</p>
-          <p>年級: {student.grade}</p>
-          <p>班級: {student.class}</p>
-          <p>Email: {student.Email}</p>
-          <p>缺席次數: {student.absences ? student.absences : 0}</p>
-        </div>
-      ))
-    ) : (
-      <p>找不到符合的學生</p>
-    )}
+  const container =
+    <div className="container">
+      {filteredStudents.length > 0 ? (
+        filteredStudents.map((student) => (
+          <div className="student" key={student._id}>
+            <p>帳號: {student.userName}</p>
+            <p>座號: {student.sid}</p>
+            <p>姓名: {student.name}</p>
+            <p>院系: {student.department}</p>
+            <p>年級: {student.grade}</p>
+            <p>班級: {student.class}</p>
+            <p>Email: {student.Email}</p>
+            <p>缺席次數: {student.absences ? student.absences : 0}</p>
+          </div>
+        ))
+      ) : (
+        <p>找不到符合的學生</p>
+      )}
 
 
-  </div>
-  return (
-    <div>
-      <Navigation_bar />
-      <input
-        type="text"
-        placeholder="輸入學生姓名"
-        value={searchName}
-        onChange={(e) => setSearchName(e.target.value)} // 更新搜尋條件
-      />
-      {container}
     </div>
+  return (
+    <>
+      <Navigation_bar />
+      <div className="find">
+        <h2>查找學生</h2>
+        <input
+          type="text"
+          placeholder="輸入學生姓名"
+          value={searchName}
+          onChange={(e) => setSearchName(e.target.value)} // 更新搜尋條件
+        />
+        {container}
+      </div>
+    </>
   );
 }
