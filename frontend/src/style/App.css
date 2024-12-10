@@ -12,6 +12,11 @@
   gap: 1rem;
 }
 
+.title{
+  width: 100%;
+  text-align: center;
+}
+
 .container .student {
   border: solid 1px #212121;
   border-radius: .3rem;

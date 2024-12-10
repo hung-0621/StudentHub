@@ -27,19 +27,19 @@ function App() {
 
   const studentList = students
     ? students.map((student: Student) => {
-        return (
-          <div className="student" key={student._id}>
-            <p>帳號: {student.userName}</p>
-            <p>座號: {student.sid}</p>
-            <p>姓名: {student.name}</p>
-            <p>院系: {student.department}</p>
-            <p>年級: {student.grade}</p>
-            <p>班級: {student.class}</p>
-            <p>Email: {student.Email}</p>
-            <p>缺席次數: {student.absences ? student.absences : 0}</p>
-          </div>
-        );
-      })
+      return (
+        <div className="student" key={student._id}>
+          <p>帳號: {student.userName}</p>
+          <p>座號: {student.sid}</p>
+          <p>姓名: {student.name}</p>
+          <p>院系: {student.department}</p>
+          <p>年級: {student.grade}</p>
+          <p>班級: {student.class}</p>
+          <p>Email: {student.Email}</p>
+          <p>缺席次數: {student.absences ? student.absences : 0}</p>
+        </div>
+      );
+    })
     : "loading";
 
   return (
@@ -47,6 +47,7 @@ function App() {
       {/* <div className="aggregation">{department_student_list}</div> */}
       <Navigation_bar />
       <div className="container">
+        <h2 className="title">所有學生</h2>
         {studentList}
       </div>
     </>

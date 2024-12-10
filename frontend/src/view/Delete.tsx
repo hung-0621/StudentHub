@@ -7,11 +7,19 @@ import { api } from "../enum/api";
 import "../style/form.css";
 
 export default function Delete() {
-    const [StudentNumber, setStudentNumber] = useState(0);
+    const [maxSid, setMaxSid] = useState<number>(0);
     asyncGet(api.findAll).then((res: resp<Array<Student>>) => {
         if (res.code === 200) {
-            setStudentNumber(res.body.length);
+            const sids = res.body.map((student) => parseInt(student.sid, 10)).filter(Number.isFinite);
+            if (sids.length > 0) {
+                setMaxSid(Math.max(...sids));
+            }else{
+                setError("找不到任何sid，資料庫是空的")
+                return;
+            }
         }
+    }).catch((err) => {
+        console.error("獲取學生資料失敗", err);
     });
 
     const [sid, setSid] = useState<string>("");
@@ -30,7 +38,13 @@ export default function Delete() {
         if (!sid) {
             setError("請輸入座號！");
             return;
-        } else if (Number(sid) > StudentNumber || Number(sid) <= 0) {
+
+        } else if (Number.isNaN(Number(sid)) || Number(sid) <= 0) {
+            setError("請輸入正整數！");
+            setSid("")
+            return;
+        }
+        else if (Number(sid) > maxSid) {
             setError("座號輸入錯誤！")
             return;
         }

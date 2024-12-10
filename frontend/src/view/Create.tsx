@@ -24,7 +24,7 @@ export default function Create() {
         const { name, value } = e.target;
         setNewStudent((prev) => ({
             ...prev,
-            [name]: name === "absences" ? Number(value) : value, // 將 absences 轉為數字
+            [name]: name === "absences" ? Number(value) | 0 : value, // 將 absences 轉為數字
         }));
     }
 
@@ -35,7 +35,7 @@ export default function Create() {
 
         const userNamePattern = /^tku[a-z]{2,}[0-9]{4}$/; // tku + 2字母縮寫 + 4位數座號
         if (!userNamePattern.test(newStudent.userName)) {
-            setError("學生名字格式不正確 ex:tkuim0000");
+            setError(`學生帳號格式不正確 ex:tkuim0000`);
             return;
         }
 
@@ -75,7 +75,7 @@ export default function Create() {
                         name="userName"
                         value={newStudent.userName}
                         onChange={handle_OnChange}
-                        placeholder="帳號 (Ex:tkuim0000)"
+                        placeholder="帳號 (ex:tkuim0000)"
                     />
                     <br />
                     <input

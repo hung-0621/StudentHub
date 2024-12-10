@@ -39,5 +39,5 @@ export interface Student {
     /**
      * 缺席次數
      */
-    absences?: number | undefined;
+    absences?: number | undefined |string;
 }

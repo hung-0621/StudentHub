@@ -144,24 +144,24 @@ export class UserService extends Service {
     return exist;
   }
 
-  public async deleteById(id: string) {
-    const resp: resp<any> = {
-      code: 200,
-      message: "",
-      body: undefined,
-    };
+  // public async deleteById(id: string) {
+  //   const resp: resp<any> = {
+  //     code: 200,
+  //     message: "",
+  //     body: undefined,
+  //   };
 
-    try {
-      const res = await studentsModel.deleteOne({ _id: id });
-      resp.message = "success";
-      resp.body = res;
-    } catch (error) {
-      resp.message = error as string;
-      resp.code = 500;
-    }
+  //   try {
+  //     const res = await studentsModel.deleteOne({ _id: id });
+  //     resp.message = "success";
+  //     resp.body = res;
+  //   } catch (error) {
+  //     resp.message = error as string;
+  //     resp.code = 500;
+  //   }
 
-    return resp;
-  }
+  //   return resp;
+  // }
 
   public async deleteBySid(sid: string) {
     const resp: resp<any> = {
@@ -182,44 +182,55 @@ export class UserService extends Service {
     return resp;
   }
 
-  public async updateNameByID(id: string, name: string) {
+  // public async updateNameByID(id: string, name: string) {
+  //   const resp: resp<DBResp<Student> | undefined> = {
+  //     code: 200,
+  //     message: "",
+  //     body: undefined,
+  //   };
+
+  //   const user = await studentsModel.findById(id);
+
+  //   if (user) {
+  //     try {
+  //       user.name = name;
+  //       await user.save();
+  //       resp.body = user;
+  //       resp.message = "update success";
+  //     } catch (error) {
+  //       resp.code = 500;
+  //       resp.message = error as string;
+  //     }
+  //   } else {
+  //     resp.code = 404;
+  //     resp.message = "user not found";
+  //   }
+  //   return resp;
+  // }
+
+  public async update_Student_By_UserName(info: Student) {
     const resp: resp<DBResp<Student> | undefined> = {
       code: 200,
       message: "",
       body: undefined,
     };
 
-    const user = await studentsModel.findById(id);
+    const user = await studentsModel.findOne({ userName: info.userName });
 
-    if (user) {
-      try {
-        user.name = name;
-        await user.save();
-        resp.body = user;
-        resp.message = "update success";
-      } catch (error) {
-        resp.code = 500;
-        resp.message = error as string;
+    const allowedFields = ["name", "department", "grade", "class", "Email", "absences"];
+
+    // 檢查 info 的所有字段是否存在
+    for (const key in info) {
+      if (info[key as keyof Student] === undefined || info[key as keyof Student] === null) {
+        resp.code = 400;
+        resp.message = `Invalid input: ${key} is missing or undefined`;
+        return resp;
       }
-    } else {
-      resp.code = 404;
-      resp.message = "user not found";
     }
-    return resp;
-  }
-
-  public async updateAbsencesByName(name: string, absences: number) {
-    const resp: resp<DBResp<Student> | undefined> = {
-      code: 200,
-      message: "",
-      body: undefined,
-    };
-
-    const user = await studentsModel.findOne({name:name});
 
     if (user) {
       try {
-        user.absences = absences;
+        Object.assign(user, info);
         await user.save();
         resp.body = user;
         resp.message = "update success";

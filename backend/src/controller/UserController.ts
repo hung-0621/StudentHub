@@ -43,28 +43,27 @@ export class UserController extends Contorller {
     Response.status(resp.code).send(resp);
   }
 
-  public async deleteById(Request: Request, Response: Response) {
-    const resp = await this.service.deleteById(Request.query.id as string);
-    Response.status(resp.code).send(resp);
-  }
+  // public async deleteById(Request: Request, Response: Response) {
+  //   const resp = await this.service.deleteById(Request.query.id as string);
+  //   Response.status(resp.code).send(resp);
+  // }
   
   public async deleteBySid(Request: Request, Response: Response) {
     const resp = await this.service.deleteBySid(Request.body.sid as string);
     Response.status(resp.code).send(resp);
   }
 
-  public async updateNameByID(Request: Request, Response: Response) {
-    const resp = await this.service.updateNameByID(
-      Request.body.id,
-      Request.body.name
-    );
-    Response.status(resp.code).send(resp);
-  }
+  // public async updateNameByID(Request: Request, Response: Response) {
+  //   const resp = await this.service.updateNameByID(
+  //     Request.body.id,
+  //     Request.body.name
+  //   );
+  //   Response.status(resp.code).send(resp);
+  // }
 
-  public async updateAbsencesByName(Request: Request, Response: Response) {
-    const resp = await this.service.updateAbsencesByName(
-      Request.body.name,
-      Request.body.absences
+  public async update_Student_By_UserName(Request: Request, Response: Response) {
+    const resp = await this.service.update_Student_By_UserName(
+      Request.body
     );
     Response.status(resp.code).send(resp);
   }

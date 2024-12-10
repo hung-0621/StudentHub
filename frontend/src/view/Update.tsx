@@ -6,7 +6,12 @@ import "../style/form.css";
 
 export default function Update() {
     const [data, setData] = useState({
+        userName: "",
         name: "",
+        department: "",
+        grade: "",
+        class: "",
+        Email: "",
         absences: "",
     });
     const [error, setError] = useState<string | null>(null); // 錯誤訊息
@@ -14,10 +19,10 @@ export default function Update() {
 
     function handle_OnChange(e: React.ChangeEvent<HTMLInputElement>) {
         const { name, value } = e.target;
-        setData({
-            ...data,
-            [name]: value,
-        });
+        setData((prev) => ({
+            ...prev,
+            [name]: name === "absences" ? Number(value)| 0 : value, // 將 absences 轉為數字
+        }));
     }
 
     async function handle_OnSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -32,10 +37,18 @@ export default function Update() {
         }
 
         try {
-            const response = await asyncPut(api.updateAbsencesByName, data);
+            const response = await asyncPut(api.update_Student_By_UserName, data);
             if (response.code === 200) {
                 setSuccess("學生資料更新成功！");
-                setData({ name: "", absences: "" }); // 重置
+                setData({
+                    userName: "",
+                    name: "",
+                    department: "",
+                    grade: "",
+                    class: "",
+                    Email: "",
+                    absences: "",
+                }); // 重置
             } else {
                 setError("更新失敗，請稍後再試！");
             }
@@ -52,6 +65,16 @@ export default function Update() {
                     <h2 className="title">更新學生資料</h2>
                     {error && <p className="error">{error}</p>}
                     {success && <p className="success">{success}</p>}
+                    <label htmlFor="userName">要更新的學生帳號</label>
+                    <input
+                        type="text"
+                        name="userName"
+                        value={data.userName}
+                        onChange={handle_OnChange}
+                        placeholder="帳號(ex:tkuim0000)"
+                    />
+                    <br />
+                    <label htmlFor="userName">要更新的資訊</label>
                     <input
                         type="text"
                         name="name"
@@ -61,7 +84,39 @@ export default function Update() {
                     />
                     <br />
                     <input
-                        type="number"
+                        type="text"
+                        name="department"
+                        value={data.department}
+                        onChange={handle_OnChange}
+                        placeholder="院系"
+                    />
+                    <br />
+                    <input
+                        type="text"
+                        name="grade"
+                        value={data.grade}
+                        onChange={handle_OnChange}
+                        placeholder="年級"
+                    />
+                    <br />
+                    <input
+                        type="text"
+                        name="class"
+                        value={data.class}
+                        onChange={handle_OnChange}
+                        placeholder="班級"
+                    />
+                    <br />
+                    <input
+                        type="text"
+                        name="Email"
+                        value={data.Email}
+                        onChange={handle_OnChange}
+                        placeholder="Email"
+                    />
+                    <br />
+                    <input
+                        type="text"
                         name="absences"
                         value={data.absences}
                         onChange={handle_OnChange}

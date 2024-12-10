@@ -7,11 +7,21 @@ form {
 }
 
 /* div */
-.form{
+.form {
     justify-items: center;
 }
 
+label {
+    display: block;
+}
+
+label::after {
+    content: "：";
+}
+
 .title {
+    width: 100%;
+    text-align: center;
     margin-bottom: 0.5rem;
 }
 
@@ -42,6 +52,7 @@ input:hover {
 
 button {
     color: white;
+    font-size: large;
     background-color: rgb(48, 200, 122);
     width: 30%;
     padding: 12px 20px;
