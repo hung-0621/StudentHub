@@ -96,8 +96,8 @@ git clone https://github.com/hung-0621/StudentHub.git
   
 
 ### 7. 運行後端
-
->[!NOTE]若有需要可運行npm audit fix自動嘗試修復檢測到的安全問題
+>[!NOTE]
+>若有需要可運行npm audit fix自動嘗試修復檢測到的安全問題
 
 ```
 
@@ -114,8 +114,8 @@ npm run dev
   
 
 ### 8. 運行前端
-
->[!NOTE]若有需要可運行npm audit fix自動嘗試修復檢測到的安全問題
+>[!NOTE]
+>若有需要可運行npm audit fix自動嘗試修復檢測到的安全問題
 
 ```
 
