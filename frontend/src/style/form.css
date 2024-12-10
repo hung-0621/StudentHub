@@ -1,0 +1,57 @@
+form {
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    width: 60%;
+    padding: 0.5rem;
+    margin: 1rem;
+}
+
+/* div */
+.form{
+    justify-items: center;
+}
+
+.title {
+    margin-bottom: 0.5rem;
+}
+
+.error {
+    color: red;
+}
+
+.success {
+    color: green;
+}
+
+input {
+    width: 50%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    padding: 12px 20px;
+    margin-bottom: 1rem;
+    box-shadow: 3px 5px 5px #ccc;
+}
+
+input:hover {
+    opacity: 0.8;
+    box-shadow: none;
+}
+
+button {
+    color: white;
+    background-color: rgb(48, 200, 122);
+    width: 30%;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    margin: 0.5rem;
+    box-shadow: 3px 5px 5px #ccc;
+}
+
+button:hover {
+    opacity: 0.9;
+    box-shadow: none;
+}

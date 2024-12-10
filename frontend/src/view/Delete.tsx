@@ -2,27 +2,17 @@ import { asyncDelete, asyncGet } from "../utils/fetch";
 import Navigation_bar from "./Navigation_bar";
 import { Student } from "../interface/Student";
 import { resp } from "../interface/resp";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { api } from "../enum/api";
+import "../style/form.css";
 
 export default function Delete() {
     const [StudentNumber, setStudentNumber] = useState(0);
-    const cache = useRef<boolean>(false);
-
-    useEffect(() => {
-        /**
-         * 做緩存處理, 避免多次發起請求
-         */
-        if (!cache.current) {
-            cache.current = true;
-            asyncGet(api.findAll).then((res: resp<Array<Student>>) => {
-                if (res.code === 200) {
-                    setStudentNumber(res.body.length);
-                }
-            });
+    asyncGet(api.findAll).then((res: resp<Array<Student>>) => {
+        if (res.code === 200) {
+            setStudentNumber(res.body.length);
         }
-    }, []);
-
+    });
 
     const [sid, setSid] = useState<string>("");
     const [error, setError] = useState<string>("");
@@ -34,6 +24,9 @@ export default function Delete() {
 
     async function handle_OnSubmit(e: React.FormEvent) {
         e.preventDefault();
+        setError("");
+        setSuccess("");
+
         if (!sid) {
             setError("請輸入座號！");
             return;
@@ -45,7 +38,7 @@ export default function Delete() {
         try {
             const response = await asyncDelete(api.deleteBySid, { "sid": sid });
             if (response.message === "success") {
-                setSuccess("學生刪除成功！");
+                setSuccess(`學生座號${sid}刪除成功！`);
                 setSid("");
                 setError("");
             } else {
@@ -61,20 +54,22 @@ export default function Delete() {
     return (
         <>
             <Navigation_bar />
-            <form onSubmit={handle_OnSubmit}>
-                <h2>刪除學生</h2>
-                {error && <p style={{ color: "red" }}>{error}</p>}
-                {success && <p style={{ color: "green" }}>{success}</p>}
-                <input
-                    type="text"
-                    name="sid"
-                    value={sid}
-                    onChange={handle_OnChange}
-                    placeholder="座號"
-                />
-                <button type="submit">刪除</button>
-            </form>
-
+            <div className="form">
+                <form onSubmit={handle_OnSubmit}>
+                    <h2 className="title">刪除學生</h2>
+                    {error && <p className="error">{error}</p>}
+                    {success && <p className="success">{success}</p>}
+                    <input
+                        type="text"
+                        name="sid"
+                        value={sid}
+                        onChange={handle_OnChange}
+                        placeholder="座號"
+                    />
+                    <br />
+                    <button type="submit">刪除</button>
+                </form>
+            </div>
         </>
     );
 }

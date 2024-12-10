@@ -2,6 +2,7 @@ import { useState } from "react";
 import Navigation_bar from "./Navigation_bar";
 import { asyncPut } from "../utils/fetch";
 import { api } from "../enum/api";
+import "../style/form.css";
 
 export default function Update() {
     const [data, setData] = useState({
@@ -46,30 +47,32 @@ export default function Update() {
     return (
         <>
             <Navigation_bar />
-            <form onSubmit={handle_OnSubmit} className="update">
-                <h2>更新學生資料</h2>
-                {error && <p style={{ color: "red" }}>{error}</p>}
-                {success && <p style={{ color: "green" }}>{success}</p>}
-                <input
-                    type="text"
-                    name="name"
-                    value={data.name}
-                    onChange={handle_OnChange}
-                    placeholder="姓名"
-                />
-                <br />
-                <input
-                    type="number"
-                    name="absences"
-                    value={data.absences}
-                    onChange={handle_OnChange}
-                    placeholder="缺席次數"
-                />
-                <br />
-                <button type="submit" value="Submit">
-                    更新
-                </button>
-            </form>
+            <div className="form">
+                <form onSubmit={handle_OnSubmit} className="update">
+                    <h2 className="title">更新學生資料</h2>
+                    {error && <p className="error">{error}</p>}
+                    {success && <p className="success">{success}</p>}
+                    <input
+                        type="text"
+                        name="name"
+                        value={data.name}
+                        onChange={handle_OnChange}
+                        placeholder="姓名"
+                    />
+                    <br />
+                    <input
+                        type="number"
+                        name="absences"
+                        value={data.absences}
+                        onChange={handle_OnChange}
+                        placeholder="缺席次數"
+                    />
+                    <br />
+                    <button type="submit" value="Submit">
+                        更新
+                    </button>
+                </form>
+            </div>
         </>
     );
 }

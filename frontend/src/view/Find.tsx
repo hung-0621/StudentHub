@@ -4,7 +4,7 @@ import { Student } from "../interface/Student";
 import { resp } from "../interface/resp";
 import { asyncGet } from "../utils/fetch";
 import { api } from "../enum/api";
-import "../style/Find.css";
+import "../style/form.css";
 
 
 export default function Find() {
@@ -66,9 +66,9 @@ export default function Find() {
   return (
     <>
       <Navigation_bar />
-      <div className="find">
+      <div className="form">
         <form>
-          <h2>查找學生</h2>
+        <h2 className="title">查找學生</h2>
           <input
             type="text"
             placeholder="輸入學生姓名"
