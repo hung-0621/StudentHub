@@ -144,25 +144,6 @@ export class UserService extends Service {
     return exist;
   }
 
-  // public async deleteById(id: string) {
-  //   const resp: resp<any> = {
-  //     code: 200,
-  //     message: "",
-  //     body: undefined,
-  //   };
-
-  //   try {
-  //     const res = await studentsModel.deleteOne({ _id: id });
-  //     resp.message = "success";
-  //     resp.body = res;
-  //   } catch (error) {
-  //     resp.message = error as string;
-  //     resp.code = 500;
-  //   }
-
-  //   return resp;
-  // }
-
   public async deleteBySid(sid: string) {
     const resp: resp<any> = {
       code: 200,
@@ -181,32 +162,6 @@ export class UserService extends Service {
 
     return resp;
   }
-
-  // public async updateNameByID(id: string, name: string) {
-  //   const resp: resp<DBResp<Student> | undefined> = {
-  //     code: 200,
-  //     message: "",
-  //     body: undefined,
-  //   };
-
-  //   const user = await studentsModel.findById(id);
-
-  //   if (user) {
-  //     try {
-  //       user.name = name;
-  //       await user.save();
-  //       resp.body = user;
-  //       resp.message = "update success";
-  //     } catch (error) {
-  //       resp.code = 500;
-  //       resp.message = error as string;
-  //     }
-  //   } else {
-  //     resp.code = 404;
-  //     resp.message = "user not found";
-  //   }
-  //   return resp;
-  // }
 
   public async update_Student_By_UserName(info: Student) {
     const resp: resp<DBResp<Student> | undefined> = {
