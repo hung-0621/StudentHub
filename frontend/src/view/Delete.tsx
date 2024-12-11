@@ -13,7 +13,7 @@ export default function Delete() {
             const sids = res.body.map((student) => parseInt(student.sid, 10)).filter(Number.isFinite);
             if (sids.length > 0) {
                 setMaxSid(Math.max(...sids));
-            }else{
+            } else {
                 setError("找不到任何sid，資料庫是空的")
                 return;
             }
@@ -39,7 +39,8 @@ export default function Delete() {
             setError("請輸入座號！");
             return;
 
-        } else if (Number.isNaN(Number(sid)) || Number(sid) <= 0) {
+        }
+        else if (Number.isNaN(Number(sid)) || Number(sid) <= 0) {
             setError("請輸入正整數！");
             setSid("")
             return;
@@ -50,14 +51,16 @@ export default function Delete() {
         }
 
         try {
-            const response = await asyncDelete(api.deleteBySid, { "sid": sid });
-            if (response.message === "success") {
-                setSuccess(`學生座號${sid}刪除成功！`);
-                setSid("");
-                setError("");
-            } else {
-                setError("刪除失敗，請重試。");
-                setSuccess("");
+            if (window.confirm('確認要刪除此學生嗎？')) {
+                const response = await asyncDelete(api.deleteBySid, { "sid": sid });
+                if (response.message === "success") {
+                    setSuccess(`學生座號${sid}刪除成功！`);
+                    setSid("");
+                    setError("");
+                } else {
+                    setError("刪除失敗，請重試。");
+                    setSuccess("");
+                }
             }
         } catch (error) {
             setError("刪除過程中發生錯誤！");
