@@ -355,3 +355,4 @@ npm run dev
 <img src="https://github.com/hung-0621/StudentHub/blob/main/images/delete.png" width="500" alt="刪除學生">  
 
 ## demo
+[網站介紹影片](https://youtu.be/HZ-TwEFwLME?si=etCJlGsmQT-pj7Tx)
