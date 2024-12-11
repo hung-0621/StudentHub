@@ -123,7 +123,7 @@ npm run dev
 
 ## API規格說明
 
-### findAll
+>### findAll
 說明：取得所有學生資訊  
 
 #### UserService.ts:  
@@ -177,7 +177,7 @@ npm run dev
 
     ```
 
-### insertOne
+>### insertOne
 說明：加入一筆學生資訊
 #### UserService.ts
  `public async insertOne(info: Student): Promise<resp<DBResp<Student> | undefined>>`
@@ -242,7 +242,7 @@ npm run dev
 
     ```
 
-### deleteBySid
+>### deleteBySid
 說明：透過學生座號，刪除學生資料
 #### UserService.ts
 `public async deleteBySid(sid: string)`
@@ -274,7 +274,7 @@ npm run dev
 }
 ```
 
-### update_Student_By_UserName
+>### update_Student_By_UserName
 說明：透過學生帳號，更新學生相關資訊
 #### UserService.ts
 `public async update_Student_By_UserName(info: Student)`
