@@ -349,9 +349,9 @@ npm run dev
 ![架構圖](https://github.com/hung-0621/StudentHub/blob/main/images/System_Architecture.png)
 
 ## 流程圖
-<img src="https://github.com/hung-0621/StudentHub/blob/main/images/find.png" width="600" alt="查找學生">  
-<img src="https://github.com/hung-0621/StudentHub/blob/main/images/create.png" width="600" alt="新增學生">  
-<img src="https://github.com/hung-0621/StudentHub/blob/main/images/update.png" width="600" alt="更新學生">  
-<img src="https://github.com/hung-0621/StudentHub/blob/main/images/delete.png" width="600" alt="刪除學生">  
+<img src="https://github.com/hung-0621/StudentHub/blob/main/images/find.png" width="500" alt="查找學生">  
+<img src="https://github.com/hung-0621/StudentHub/blob/main/images/create.png" width="500" alt="新增學生">  
+<img src="https://github.com/hung-0621/StudentHub/blob/main/images/update.png" width="500" alt="更新學生">  
+<img src="https://github.com/hung-0621/StudentHub/blob/main/images/delete.png" width="500" alt="刪除學生">  
 
 ## demo
