@@ -35,11 +35,13 @@ export default function Create() {
 
         // 檢查表單是否有空值
         for (const [key, value] of Object.entries(newStudent)) {
-            if (!value && key !== "_id" && key !== "sid") { // 忽略 _id 欄位
+            if ((value === "" || value === null) && key !== "_id" && key !== "sid") { 
+                // 忽略 _id 和 sid 欄位，允許 absences 為 0
                 setError("填寫欄位不得為空");
                 return;
             }
         }
+        
 
         // 檢查帳號格式
         const userNamePattern = /^tku[a-z]{2,}[0-9]{4}$/; // tku + 2字母縮寫 + 4位數座號

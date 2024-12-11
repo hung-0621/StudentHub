@@ -32,11 +32,13 @@ export default function Update() {
 
         // 檢查表單是否有空值
         for (const [key, value] of Object.entries(data)) {
-            if (key && !value) {
+            if (key && value === "" || value === null) { 
+                // 允許 absences 為 0
                 setError("填寫欄位不得為空");
                 return;
             }
         }
+        
 
         // 檢查帳號格式
         const userNamePattern = /^tku[a-z]{2,}[0-9]{4}$/; // tku + 2字母縮寫 + 4位數座號
