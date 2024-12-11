@@ -30,9 +30,29 @@ export default function Update() {
         setError(null);
         setSuccess(null);
 
-        // 驗證輸入
-        if (!data.name || !data.absences) {
-            setError("姓名和缺席次數不能為空！");
+        // 檢查表單是否有空值
+        for (const [key, value] of Object.entries(data)) {
+            if (key && !value) {
+                setError("填寫欄位不得為空");
+                return;
+            }
+        }
+
+        // 檢查帳號格式
+        const userNamePattern = /^tku[a-z]{2,}[0-9]{4}$/; // tku + 2字母縮寫 + 4位數座號
+        if (!userNamePattern.test(data.userName)) {
+            setError(`學生帳號格式不正確 ex:tkuim0000`);
+            return;
+        }
+
+        // 檢查年級輸入是否為正整數
+        const studentGrade = Number(data.grade);
+
+        if (isNaN(studentGrade)) {
+            setError("請輸入數字");
+            return;
+        } else if (studentGrade < 1) {
+            setError("請輸入正整數");
             return;
         }
 
