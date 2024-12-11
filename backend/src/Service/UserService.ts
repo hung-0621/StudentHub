@@ -17,7 +17,6 @@ type seatInfo = {
 export class UserService extends Service {
   public async getAllStudents(): Promise<Array<DBResp<Student>> | undefined> {
     try {
-      console.log("Using collection:", studentsModel.collection.name);
       const res: Array<DBResp<Student>> = await studentsModel.find({});
       return res;
     } catch (error) {
@@ -58,12 +57,12 @@ export class UserService extends Service {
           }
         }
       } catch (error) {
-        resp.message = "server error 1";
+        resp.message = "server error";
         console.log(error);
         resp.code = 500;
       }
     } else {
-      resp.message = "server error 2";
+      resp.message = "server error";
       resp.code = 500;
     }
 
