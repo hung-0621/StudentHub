@@ -346,8 +346,13 @@ npm run dev
     ```
 ## 架構圖
 
-![架構圖](https://github.com/hung-0621/StudentHub/blob/main/images/Software_Architecture.png)
+![架構圖](https://github.com/hung-0621/StudentHub/blob/main/images/System_Architecture.png)
 
 ## 流程圖
 
+![查找學生](https://github.com/hung-0621/StudentHub/blob/main/images/find.png)
+![新增學生](https://github.com/hung-0621/StudentHub/blob/main/images/create.png)
+![更新學生](https://github.com/hung-0621/StudentHub/blob/main/images/update.png)
+![刪除學生](https://github.com/hung-0621/StudentHub/blob/main/images/delete.png)
 
+## demo
