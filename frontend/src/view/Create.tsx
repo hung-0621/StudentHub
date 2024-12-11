@@ -33,9 +33,29 @@ export default function Create() {
         setSuccess(null);
         setError(null);
 
+        // 檢查表單是否有空值
+        for (const [key, value] of Object.entries(newStudent)) {
+            if (!value && key !== "_id" && key !== "sid") { // 忽略 _id 欄位
+                setError("填寫欄位不得為空");
+                return;
+            }
+        }
+
+        // 檢查帳號格式
         const userNamePattern = /^tku[a-z]{2,}[0-9]{4}$/; // tku + 2字母縮寫 + 4位數座號
         if (!userNamePattern.test(newStudent.userName)) {
             setError(`學生帳號格式不正確 ex:tkuim0000`);
+            return;
+        }
+
+        // 檢查年級輸入是否為正整數
+        const studentGrade = Number(newStudent.grade);
+
+        if (isNaN(studentGrade)) {
+            setError("請輸入數字");
+            return;
+        } else if (studentGrade < 1) {
+            setError("請輸入正整數");
             return;
         }
 

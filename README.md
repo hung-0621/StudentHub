@@ -46,23 +46,23 @@
 
 {
 
-_id: ObjectId('673ea0ddc90260dd5142dbd5'),
+    _id: ObjectId('673ea0ddc90260dd5142dbd5'),
 
-userName: 'tkuee0787',
+    userName: 'tkuee0787',
 
-sid: 1,
+    sid: 1,
 
-name: '張佳慧',
+    name: '測試',
 
-department: '電機工程系',
+    department: '電機工程系',
 
-grade: '四年級',
+    grade: '四年級',
 
-class: 'A',
+    class: 'A',
 
-Email: 'tkuee0787@tkuim.com',
+    Email: 'tkuee0787@tkuim.com',
 
-absences: 4
+    absences: 4
 
 }
 
@@ -145,7 +145,7 @@ npm run dev
                 "_id": "673ea0ddc90260dd5142dbd5",
                 "userName": "tkuee0787",
                 "sid": "1",
-                "name": "張佳慧",
+                "name": "測試1",
                 "department": "電機工程系",
                 "grade": "四年級",
                 "class": "A",
@@ -156,7 +156,7 @@ npm run dev
                 "_id": "673ea0ddc90260dd5142dbd6",
                 "userName": "tkubm9553",
                 "sid": "2",
-                "name": "蔡文杰",
+                "name": "測試2",
                 "department": "企業管理系",
                 "grade": "二年級",
                 "class": "A",
@@ -349,3 +349,5 @@ npm run dev
 ![架構圖](https://github.com/hung-0621/StudentHub/blob/main/images/Software_Architecture.png)
 
 ## 流程圖
+
+
